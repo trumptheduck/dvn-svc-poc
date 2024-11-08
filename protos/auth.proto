@@ -1,0 +1,31 @@
+// hero/hero.proto
+syntax = "proto3";
+
+package dvn.service.auth;
+
+service AuthService {
+  rpc getUserFromToken (ParamsGetUserFromToken) returns (AuthUser) {}
+}
+
+message Empty {}
+
+message HashedPassword {
+  string hash = 1;
+  string salt = 2;
+}
+
+message AuthUser {
+  string id = 1;
+  string account = 2;
+  string factoryId = 3;
+  HashedPassword password = 4;
+  int32 accountType = 5;
+  repeated string permissions = 6;
+  string fullname = 7;
+  string email = 8;
+  string phone = 9;
+}
+
+message ParamsGetUserFromToken {
+  string token = 1;
+}
